@@ -7,37 +7,103 @@ html,body{height:100%}
 body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .small{font-size:13px;color:var(--muted)}
-.header-pad{padding:18px}
+
+/* Header / Brand */
 header#site-header{
   position:relative;
-  padding:20px;
+  padding:14px 20px;
   border-bottom:1px solid rgba(255,255,255,0.04);
-  overflow:visible;
-  background:linear-gradient(0deg, rgba(2,6,23,0.25), transparent);
+  display:flex;flex-direction:column;gap:10px;
 }
+header .left{display:flex;gap:12px;align-items:center}
 .brand{display:flex;gap:12px;align-items:center}
-.logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700}
-.brand h1{font-size:20px}
-.tagline{font-size:13px;color:var(--muted)}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700}
+.brand h1{font-size:18px}
+.tagline{font-size:12px;color:var(--muted)}
 
-.controls{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
-.controls input[type="search"]{
-  padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:inherit;min-width:220px;outline:none
-}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.controls input[type="search"]{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:inherit;min-width:220px;outline:none}
 .controls select{padding:9px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:inherit}
 .btn{padding:8px 12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021018;cursor:pointer;box-shadow:0 10px 20px rgba(2,6,23,0.6)}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
 .btn-row{display:flex;gap:8px}
-.tabs{display:flex;gap:8px;margin-top:12px}
+.tabs{display:flex;gap:8px;margin-top:8px}
 .tab{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);cursor:pointer}
 .tab.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021018;border:none}
 
-.parallax-layer{
-  position:absolute;inset:0;height:140px;top:auto;left:0;right:0;pointer-events:none;
-  background-image:linear-gradient(180deg, rgba(12,18,25,0.15), rgba(0,0,0,0));
-  transform:translateZ(0);
+/* Sidebar & hamburger */
+.hamburger {
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 8px;
 }
 
+/* Sidebar now opens from the right */
+.sidebar {
+  position: fixed;
+  right: 0; /* moved from left: 0 to right: 0 */
+  top: 0;
+  bottom: 0;
+  width: 280px;
+  background: var(--card);
+  z-index: 130;
+  transform: translateX(110%); /* slide out to the right */
+  transition: transform 0.28s ease;
+  padding: 18px;
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.6); /* shadow flips direction */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* slide in from right */
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 120;
+  opacity: 1;
+}
+
+.sidebar-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-nav a {
+  padding: 10px;
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.sidebar-nav a.active {
+  background: linear-gradient(90deg, var(--accent1), var(--accent2));
+  color: #021018;
+}
+
+/* Close (X) button stays on right side */
+.close-x {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+}
 /* main */
 main{padding:20px 22px}
 .section{margin-bottom:22px}
@@ -48,37 +114,41 @@ main{padding:20px 22px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 .wall{
   border-radius:12px;overflow:hidden;position:relative;min-height:160px;background:#07121a;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease;
+  display:flex;align-items:stretch;flex-direction:column;
 }
 .wall img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease,opacity .3s ease}
 .wall:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(2,6,23,0.6)}
 .wall .overlay{position:absolute;left:8px;right:8px;bottom:8px;display:flex;justify-content:space-between;align-items:center}
 .wall .title{background:linear-gradient(90deg,rgba(0,0,0,0.5),transparent);padding:6px 10px;border-radius:8px;font-size:14px}
+.icons{display:flex;gap:8px}
 .icon-btn{background:rgba(0,0,0,0.45);padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);cursor:pointer;color:var(--text)}
+.card-download{position:absolute;left:8px;top:8px;background:rgba(0,0,0,0.45);padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);cursor:pointer;color:var(--text)}
 
 /* modal */
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.75);z-index:60;padding:20px}
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:140}
 .modal.open{display:flex}
-.modal-content{display:flex;gap:12px;max-width:1100px;width:100%;max-height:86vh;background:var(--card);border-radius:12px;padding:12px;align-items:center;overflow:auto}
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.75)}
+.modal-content{position:relative;display:flex;gap:12px;max-width:1100px;width:95%;max-height:86vh;background:var(--card);border-radius:12px;padding:12px;align-items:center;overflow:auto;z-index:150}
 .modal-content img{max-height:78vh;border-radius:8px;object-fit:contain;flex:0 0 auto}
 .modal-side{flex:1;display:flex;flex-direction:column;gap:8px;min-width:220px}
 .modal-actions{display:flex;gap:8px;flex-wrap:wrap}
+.modal-close{position:absolute;right:10px;top:10px;background:transparent;border:none;color:var(--text);font-size:18px;cursor:pointer}
 
 /* random card */
 .wallpaper-card{display:flex;gap:12px;align-items:center}
 .wallpaper-card .thumb{width:220px;height:140px;border-radius:10px;overflow:hidden}
+.wallpaper-card .thumb img{width:100%;height:100%;object-fit:cover}
 .wallpaper-card .info{flex:1}
+
+/* load more */
+.load-more-wrap{text-align:center;margin-top:18px}
 
 /* responsive */
 @media (max-width:800px){
   .modal-content{flex-direction:column}
   .controls{flex-direction:column;align-items:stretch}
   .brand{gap:10px}
+  .sidebar{width:80%}
 }
-
-/* load more */
-.load-more-wrap{text-align:center;margin-top:18px}
-
-/* subtle fade-in */
-.fade-in{animation:fadeUp .5s ease both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-footer{padding:14px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03);margin-top:20px}
+.fade-in{animation:fadeUp .45s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}
