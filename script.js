@@ -419,10 +419,37 @@ function bindUI(){
   qs('category')?.addEventListener('change', ()=> resetPageAndLoad());
 
   // buttons
-  qs('shuffleBtn')?.addEventListener('click', ()=> { allImages.sort(()=>Math.random()-0.5); resetPageAndLoad(); });
-  qs('refreshBtn')?.addEventListener('click', async ()=> { await loadImages(true); renderCategoryOptions(); resetPageAndLoad(); });
-  qs('favoritesView')?.addEventListener('click', ()=> { showingFavorites = !showingFavorites; qs('favoritesView').textContent = showingFavorites ? 'Showing Favorites' : 'Favorites'; resetPageAndLoad(); });
-  qs('themeToggle')?.addEventListener('click', toggleTheme);
+  qs('shuffleBtn')?.addEventListener('click', ()=> { 
+    allImages.sort(()=>Math.random()-0.5); 
+    resetPageAndLoad(); 
+  });
+  
+  qs('refreshBtn')?.addEventListener('click', async ()=> { 
+    await loadImages(true); 
+    renderCategoryOptions(); 
+    resetPageAndLoad(); 
+  });
+
+  qs('favoritesView')?.addEventListener('click', ()=> { 
+    showingFavorites = !showingFavorites; 
+    qs('favoritesView').textContent = showingFavorites ? 'Showing Favorites' : 'Favorites'; 
+    resetPageAndLoad(); 
+  });
+
+  // 🌙 THEME TOGGLE (Updated)
+  const themeToggleBtn = qs('themeToggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      toggleTheme();
+      themeToggleBtn.textContent =
+        document.documentElement.hasAttribute('data-light') ? '🌙 Dark' : '☀️ Light';
+    });
+
+    // Set initial text correctly
+    themeToggleBtn.textContent =
+      document.documentElement.hasAttribute('data-light') ? '🌙 Dark' : '☀️ Light';
+  }
+
   qsa('.tab').forEach(t => t.addEventListener('click', onTabClick));
   qs('loadMore')?.addEventListener('click', ()=> loadPage(false));
 
@@ -432,14 +459,31 @@ function bindUI(){
   window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
 
   // modal actions
-  qs('favToggle')?.addEventListener('click', ()=> { if(modalCurrent) toggleFavorite(modalCurrent.id); updateModalFav(); });
-  qs('downloadBtn')?.addEventListener('click', (e)=> { if(!modalCurrent) return; incrementCount(modalCurrent.id); qs('downloadCount') && (qs('downloadCount').textContent = String(loadCounts()[modalCurrent.id]||0)); trackEvent('Download', modalCurrent.id); });
+  qs('favToggle')?.addEventListener('click', ()=> { 
+    if(modalCurrent) toggleFavorite(modalCurrent.id); 
+    updateModalFav(); 
+  });
+
+  qs('downloadBtn')?.addEventListener('click', (e)=> { 
+    if(!modalCurrent) return; 
+    incrementCount(modalCurrent.id); 
+    qs('downloadCount') && (qs('downloadCount').textContent = String(loadCounts()[modalCurrent.id]||0)); 
+    trackEvent('Download', modalCurrent.id); 
+  });
+
   qs('setWallpaperBtn')?.addEventListener('click', setAsWallpaper);
 
   // audio toggle (if present)
   qs('audioToggle')?.addEventListener('click', ()=> {
-    const a = qs('ambientAudio'); if(!a) return;
-    if(a.paused){ a.play(); qs('audioToggle').textContent = '🔊 Ambient On'; } else { a.pause(); qs('audioToggle').textContent = '🎧 Ambient'; }
+    const a = qs('ambientAudio'); 
+    if(!a) return;
+    if(a.paused){ 
+      a.play(); 
+      qs('audioToggle').textContent = '🔊 Ambient On'; 
+    } else { 
+      a.pause(); 
+      qs('audioToggle').textContent = '🎧 Ambient'; 
+    }
   });
 
   // Close sidebar when clicking nav links
@@ -466,9 +510,9 @@ async function setAsWallpaper(){
 // ---------------------- BOOTSTRAP ----------------------
 async function bootstrap(){
   createPreloader();
-  applySavedTheme();
+  applySavedTheme(); // ✅ Load saved theme
   bindUI();
-   bindModalDownload();
+  bindModalDownload();
   await loadImages();
   renderCategoryOptions();
   showRandomOfDay();
@@ -479,8 +523,12 @@ async function bootstrap(){
   highlightActiveLink();
   updateDynamicTitle();
   registerServiceWorker();
+
   // Defensive: hide overlay if any left visible
-  try{ const ov = qs('overlay'); if(ov){ ov.style.display = 'none'; ov.hidden = true; } }catch(e){}
+  try { 
+    const ov = qs('overlay'); 
+    if(ov){ ov.style.display = 'none'; ov.hidden = true; } 
+  } catch(e){}
 }
 
 // run
