@@ -254,23 +254,31 @@ function toggleFavorite(id){
 function findImageById(id){ return allImages.find(i => String(i.id) === String(id)); }
 
 // ---------------------- DOWNLOADS ----------------------
-function handleDownload(img){
+function handleDownload(img) {
   try {
-    const a = document.createElement('a');
-    a.href = img.url;
-    a.download = (img.title || img.id).replace(/\s+/g,'_') + '.jpg';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    const link = document.createElement('a');
+    link.href = img.url;
+    link.download = (img.title || img.id || 'Wallpaper') + '.jpg';
+    link.target = '_self'; // prevent new tab from opening
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Count + analytics updates
     incrementCount(img.id);
     updateTrending();
     trackEvent('Download', img.id);
-    // update modal counter if open
-    if(modalCurrent && modalCurrent.id === img.id) qs('downloadCount') && (qs('downloadCount').textContent = String(loadCounts()[img.id]||0));
-  } catch(e){
-    console.error('download failed', e);
+
+    // Update modal counter if open
+    if (modalCurrent && modalCurrent.id === img.id) {
+      const countEl = qs('downloadCount');
+      if (countEl) countEl.textContent = String(loadCounts()[img.id] || 0);
+    }
+  } catch (e) {
+    console.error('Download failed:', e);
   }
 }
+
 
 // ---------------------- RANDOM OF DAY ----------------------
 function indexForToday(n){
