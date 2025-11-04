@@ -254,15 +254,19 @@ function toggleFavorite(id){
 function findImageById(id){ return allImages.find(i => String(i.id) === String(id)); }
 
 // ---------------------- DOWNLOADS ----------------------
-function handleDownload(img) {
+async function handleDownload(img) {
   try {
+    const response = await fetch(img.url);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
     const link = document.createElement('a');
-    link.href = img.url;
+    link.href = blobUrl;
     link.download = (img.title || img.id || 'Wallpaper') + '.jpg';
-    link.target = '_self'; // prevent new tab from opening
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(blobUrl);
 
     // Count + analytics updates
     incrementCount(img.id);
@@ -278,6 +282,18 @@ function handleDownload(img) {
     console.error('Download failed:', e);
   }
 }
+
+// ---------------------- MODAL DOWNLOAD FIX ----------------------
+function bindModalDownload() {
+  const btn = qs('downloadBtn');
+  if (!btn) return;
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (!modalCurrent) return;
+    await handleDownload(modalCurrent);
+  });
+}
+
 
 
 // ---------------------- RANDOM OF DAY ----------------------
@@ -452,6 +468,7 @@ async function bootstrap(){
   createPreloader();
   applySavedTheme();
   bindUI();
+   bindModalDownload();
   await loadImages();
   renderCategoryOptions();
   showRandomOfDay();
