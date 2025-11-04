@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WallpaperSite — Modern Wallpapers</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header id="site-header">
+    <div class="brand">
+      <div class="logo">W</div>
+      <div>
+        <h1>WallpaperSite</h1>
+        <p class="tagline">Beautiful wallpapers — download, favorite, enjoy.</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search (title or tag)..." />
+      <select id="category"></select>
+      <div class="btn-row">
+        <button id="refreshBtn" class="btn">Refresh</button>
+        <button id="shuffleBtn" class="btn">Shuffle</button>
+        <button id="favoritesView" class="btn">Favorites</button>
+        <button id="themeToggle" class="btn">Theme</button>
+      </div>
+    </div>
+
+    <nav class="tabs">
+      <button data-tab="all" class="tab active">All</button>
+      <button data-tab="trending" class="tab">Trending</button>
+      <button data-tab="random" class="tab">Random of the Day</button>
+    </nav>
+
+    <!-- parallax bg -->
+    <div class="parallax-layer" id="parallaxLayer"></div>
+  </header>
+
+  <main>
+    <section id="randomOfDay" class="section card hidden">
+      <h2>Random Wallpaper of the Day</h2>
+      <div id="randomCard" class="wallpaper-card"></div>
+    </section>
+
+    <section id="gallerySection" class="section">
+      <div id="gallery" class="grid" aria-live="polite"></div>
+      <div id="loadMoreWrap" class="load-more-wrap">
+        <button id="loadMore" class="btn ghost">Load more</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <img id="modalImg" src="" alt="Preview" />
+      <div class="modal-side">
+        <h3 id="modalTitle">Title</h3>
+        <p id="modalTags" class="meta small"></p>
+        <div class="modal-actions">
+          <a id="downloadBtn" class="btn" download>Download</a>
+          <button id="setWallpaperBtn" class="btn ghost">Set as Wallpaper</button>
+          <button id="favToggle" class="btn ghost">❤ Favorite</button>
+          <button id="closeModal" class="btn ghost">Close</button>
+        </div>
+        <p class="small">Downloads: <span id="downloadCount">0</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ambient audio -->
+  <div class="audio-control">
+    <button id="audioToggle" class="btn ghost">🎧 Ambient</button>
+    <audio id="ambientAudio" loop preload="none">
+      <!-- You can replace this src with any ambient mp3 file you host -->
+      <source src="https://cdn.pixabay.com/download/audio/2022/08/23/audio_9c57b2b8b8.mp3?filename=soft-ambience-9314.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <footer>
+    <div>© 2025 WallpaperSite — Front-end demo</div>
+    <div class="small">Tip: Use the "Favorites" button to view saved wallpapers. Downloads are counted locally.</div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
