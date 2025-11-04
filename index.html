@@ -3,16 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>WallpaperSite — Modern Wallpapers</title>
+  <title>WallpaperSite — Home</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header id="site-header">
-    <div class="brand">
+  <!-- Sidebar / Hamburger -->
+  <div id="sidebar" class="sidebar" aria-hidden="true">
+    <button id="closeSidebar" class="close-x" aria-label="Close menu">✕</button>
+    <div class="sidebar-brand">
       <div class="logo">W</div>
-      <div>
-        <h1>WallpaperSite</h1>
-        <p class="tagline">Beautiful wallpapers — download, favorite, enjoy.</p>
+      <h2>Free Wallpaper</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </div>
+  <div id="overlay" class="overlay" hidden></div>
+
+  <header id="site-header">
+    <div class="left">
+      <button id="hamburger" class="hamburger" aria-label="Open menu">☰</button>
+      <div class="brand">
+        <div class="logo">W</div>
+        <div>
+          <h1>WallpaperSite</h1>
+          <div class="tagline">Beautiful wallpapers — download & enjoy</div>
+        </div>
       </div>
     </div>
 
@@ -30,11 +50,8 @@
     <nav class="tabs">
       <button data-tab="all" class="tab active">All</button>
       <button data-tab="trending" class="tab">Trending</button>
-      <button data-tab="random" class="tab">Random of the Day</button>
+      <button data-tab="random" class="tab">Random</button>
     </nav>
-
-    <!-- parallax bg -->
-    <div class="parallax-layer" id="parallaxLayer"></div>
   </header>
 
   <main>
@@ -53,16 +70,17 @@
 
   <!-- Modal -->
   <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-content">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="closeModalBtn" class="modal-close" aria-label="Close">✕</button>
       <img id="modalImg" src="" alt="Preview" />
       <div class="modal-side">
         <h3 id="modalTitle">Title</h3>
         <p id="modalTags" class="meta small"></p>
         <div class="modal-actions">
-          <a id="downloadBtn" class="btn" download>Download</a>
+          <a id="downloadBtn" class="btn" download>⬇ Download</a>
           <button id="setWallpaperBtn" class="btn ghost">Set as Wallpaper</button>
           <button id="favToggle" class="btn ghost">❤ Favorite</button>
-          <button id="closeModal" class="btn ghost">Close</button>
         </div>
         <p class="small">Downloads: <span id="downloadCount">0</span></p>
       </div>
@@ -73,14 +91,13 @@
   <div class="audio-control">
     <button id="audioToggle" class="btn ghost">🎧 Ambient</button>
     <audio id="ambientAudio" loop preload="none">
-      <!-- You can replace this src with any ambient mp3 file you host -->
       <source src="https://cdn.pixabay.com/download/audio/2022/08/23/audio_9c57b2b8b8.mp3?filename=soft-ambience-9314.mp3" type="audio/mpeg" />
     </audio>
   </div>
 
   <footer>
     <div>© 2025 WallpaperSite — Front-end demo</div>
-    <div class="small">Tip: Use the "Favorites" button to view saved wallpapers. Downloads are counted locally.</div>
+    <div class="small">Tip: Use the "Favorites" button to view saved wallpapers. Downloads are counted locally in your browser.</div>
   </footer>
 
   <script src="script.js" defer></script>
