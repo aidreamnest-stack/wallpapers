@@ -1,0 +1,12 @@
+[
+  { "id": "1", "title": "Forest Mist", "url": "https://picsum.photos/id/1018/1200/800", "tags": ["forest","mist","nature"], "category": "Nature" },
+  { "id": "2", "title": "Mountain View", "url": "https://picsum.photos/id/1024/1200/800", "tags": ["mountain","snow"], "category": "Nature" },
+  { "id": "3", "title": "City Lights", "url": "https://picsum.photos/id/1031/1200/800", "tags": ["city","night"], "category": "City" },
+  { "id": "4", "title": "Golden Desert", "url": "https://picsum.photos/id/1050/1200/800", "tags": ["desert","sand"], "category": "Desert" },
+  { "id": "5", "title": "Sports Car", "url": "https://picsum.photos/id/1060/1200/800", "tags": ["car","sports"], "category": "Cars" },
+  { "id": "6", "title": "Classic Car", "url": "https://picsum.photos/id/1074/1200/800", "tags": ["classic","vehicle"], "category": "Cars" },
+  { "id": "7", "title": "Calm Lake", "url": "https://picsum.photos/id/1043/1200/800", "tags": ["lake","water"], "category": "Nature" },
+  { "id": "8", "title": "Aurora Night", "url": "https://picsum.photos/id/1016/1200/800", "tags": ["aurora","sky"], "category": "Nature" },
+  { "id": "9", "title": "Minimal Desk", "url": "https://picsum.photos/id/1005/1200/800", "tags": ["minimal","workspace"], "category": "Abstract" },
+  { "id": "10", "title": "Neon Alley", "url": "https://picsum.photos/id/1011/1200/800", "tags": ["neon","city"], "category": "City" }
+]
