@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | WallpaperWorld</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1 class="logo">Wallpaper<span>World</span></h1>
-    <nav>
+  <header id="site-header">
+    <div class="left">
+      <button class="hamburger" id="openSidebar">☰</button>
+      <div class="brand">
+        <div class="logo">WW</div>
+        <h1>Wallpaper<span>World</span></h1>
+      </div>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <button class="close-x" id="closeSidebar">✕</button>
+    <div class="sidebar-brand">
+      <div class="logo">WW</div>
+      <h2>WallpaperWorld</h2>
+    </div>
+    <nav class="sidebar-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="contact.html" class="active">Contact</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms</a>
     </nav>
-  </header>
+  </aside>
 
-  <section class="page-content">
+  <main class="page-content">
     <h2>Contact Us</h2>
     <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message"></textarea>
-      <button type="submit">Send Message</button>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="4"></textarea>
+      <button type="submit" class="btn">Send Message</button>
     </form>
-  </section>
+  </main>
 
   <footer>
     <p>© 2025 WallpaperWorld. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
