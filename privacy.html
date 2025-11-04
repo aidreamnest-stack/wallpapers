@@ -1,28 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | WallpaperWorld</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <header>
-    <h1 class="logo">Wallpaper<span>World</span></h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="privacy.html" class="active">Privacy Policy</a>
-      <a href="terms.html">Terms</a>
-    </nav>
+  <!-- Header -->
+  <header id="site-header">
+    <div class="left">
+      <button class="hamburger" id="menu-btn">☰</button>
+      <div class="brand">
+        <div class="logo">W</div>
+        <div>
+          <h1>Wallpaper<span>World</span></h1>
+          <div class="tagline">Endless HD Wallpapers</div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <section class="page-content">
-    <h2>Privacy Policy</h2>
-    <p>We respect your privacy. This website uses cookies and Google AdSense to serve personalized ads. For more details, read Google’s Privacy & Terms.</p>
-  </section>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <button class="close-x" id="close-sidebar">✕</button>
+    <div class="sidebar-brand">
+      <div class="logo">W</div>
+      <h2>WallpaperWorld</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="index.html">🏠 Home</a>
+      <a href="about.html">📄 About</a>
+      <a href="contact.html">📞 Contact</a>
+      <a href="privacy.html" class="active">🔒 Privacy Policy</a>
+      <a href="terms.html">📃 Terms</a>
+    </nav>
+  </aside>
+  <div class="overlay" id="overlay" style="display:none;"></div>
 
+  <!-- Main Page Content -->
+  <main class="page-content">
+    <section class="card fade-in">
+      <h2>Privacy Policy</h2>
+      <p>
+        We respect your privacy. This website uses cookies and Google AdSense to serve personalized ads.
+        Your data is handled securely and never sold. For more details, read
+        <a href="https://policies.google.com/privacy" target="_blank">Google’s Privacy & Terms</a>.
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
   <footer>
     <p>© 2025 WallpaperWorld. All rights reserved.</p>
   </footer>
