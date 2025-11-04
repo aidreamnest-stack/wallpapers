@@ -24,6 +24,7 @@
   </div>
   <div id="overlay" class="overlay" hidden></div>
 
+  <!-- Header -->
   <header id="site-header">
     <div class="left">
       <button id="hamburger" class="hamburger" aria-label="Open menu">☰</button>
@@ -43,7 +44,7 @@
         <button id="refreshBtn" class="btn">Refresh</button>
         <button id="shuffleBtn" class="btn">Shuffle</button>
         <button id="favoritesView" class="btn">Favorites</button>
-        <button id="themeToggle" class="btn">Theme</button>
+        <button id="themeToggle" class="btn ghost" title="Toggle theme">☀️ Light</button>
       </div>
     </div>
 
@@ -54,6 +55,7 @@
     </nav>
   </header>
 
+  <!-- Main Content -->
   <main>
     <section id="randomOfDay" class="section card hidden">
       <h2>Random Wallpaper of the Day</h2>
@@ -87,7 +89,7 @@
     </div>
   </div>
 
-  <!-- Ambient audio -->
+  <!-- Ambient Audio -->
   <div class="audio-control">
     <button id="audioToggle" class="btn ghost">🎧 Ambient</button>
     <audio id="ambientAudio" loop preload="none">
@@ -95,11 +97,13 @@
     </audio>
   </div>
 
+  <!-- Footer -->
   <footer>
     <div>© 2025 WallpaperSite — Front-end demo</div>
     <div class="small">Tip: Use the "Favorites" button to view saved wallpapers. Downloads are counted locally in your browser.</div>
   </footer>
 
+  <!-- Scripts -->
   <script src="script.js" defer></script>
 </body>
 </html>
