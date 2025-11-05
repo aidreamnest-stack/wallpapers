@@ -539,3 +539,120 @@ main {
 #themeToggle:hover {
   transform: scale(1.1);
 }
+/* ------------------------------ */
+/* 🌐 RESPONSIVE DESIGN FIXES     */
+/* ------------------------------ */
+
+/* Tablet and below (≤ 992px) */
+@media (max-width: 992px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .controls .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  #search {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  select#category {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/* 📱 Mobile (≤ 768px) */
+@media (max-width: 768px) {
+  .hamburger {
+    font-size: 1.6rem;
+  }
+
+  .brand h1 {
+    font-size: 1.3rem;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .tab {
+    flex: 1 1 45%;
+    padding: 8px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .btn, .btn.ghost {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 15px 10px;
+  }
+
+  .theme-toggle, 
+  #themeToggle {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .modal-content {
+    flex-direction: column;
+    align-items: center;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-side {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Small phones (≤ 480px) */
+@media (max-width: 480px) {
+  header .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls .btn-row button {
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 80%;
+  }
+
+  .modal-content img {
+    width: 100%;
+    height: auto;
+  }
+}
+
